@@ -8,7 +8,7 @@ const JSONbig = require("json-bigint")
 module.exports = {
   siteMetadata: {
     title: `NNS Proposal Feed`,
-    siteUrl: `https://peacock.dev/nns-feed`,
+    siteUrl: `https://60cb9ef6014df611fc7fba14--serene-minsky-dca73c.netlify.app`,
   },
   plugins: [
     require.resolve(`./plugins/source-plugin`),
@@ -49,7 +49,7 @@ module.exports = {
                 return {
                   description: proposal.proposal.summary,
                   date: proposal.proposal_timestamp_seconds,
-                  url: site.siteMetadata.siteUrl + "/proposals/" + proposal.id,
+                  url: site.siteMetadata.siteUrl + proposal.slug,
                   guid: site.siteMetadata.siteUrl + proposal.slug,
                 }
               })
