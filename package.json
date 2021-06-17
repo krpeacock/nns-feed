@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "nns-feed",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "NNS Proposals RSS Feed",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
@@ -14,20 +14,14 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "@dfinity/agent": "^0.9.1",
-    "@dfinity/candid": "^0.9.1",
-    "@dfinity/principal": "^0.9.1",
-    "gatsby": "^3.6.2",
-    "gatsby-awesome-pagination": "^0.3.8",
-    "gatsby-paginate": "^1.1.1",
-    "gatsby-plugin-feed": "^3.7.1",
-    "json-bigint": "^1.0.0",
-    "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "locus": "^2.0.4",
+    "gatsby": "^3.6.2",
+    "gatsby-paginate": "^1.1.1",
+    "gatsby-plugin-feed": "^3.7.1",
+    "json-bigint": "^1.0.0",
     "prettier": "2.2.1"
   },
   "repository": {

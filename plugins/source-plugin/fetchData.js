@@ -16,8 +16,7 @@ const fetchData = async () => {
   let allData = []
   let incomplete = true
   let lastEntry = increment
-  let count = 0
-  while (incomplete && count < 2) {
+  while (incomplete) {
     try {
       const lastId = lastEntry ? [{ id: BigInt(lastEntry) }] : []
       const newData = await governance.list_proposals({
@@ -33,7 +32,6 @@ const fetchData = async () => {
         break
       }
       lastEntry += increment
-      count += 1
       console.log(`Fetching proposals from NNS: ${allData.length}`)
     } catch (error) {
       console.error(error)
