@@ -5,6 +5,5 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  plugins: [require.resolve(`./plugins/source-plugin`), `gatsby-plugin-feed`],
 }
