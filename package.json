@@ -27,6 +27,7 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "locus": "^2.0.4",
     "prettier": "2.2.1"
   },
   "repository": {

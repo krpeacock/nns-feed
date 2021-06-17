@@ -6,7 +6,24 @@ const { paginate, createPagePerItem } = pagination
 const createPaginatedPages = require("gatsby-paginate")
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
-  const proposals = await (await fetchData()).map(proposal => {
+  const foo = await graphql(`
+    {
+      proposals: allProposal {
+        edges {
+          node {
+            id
+            internal {
+              content
+            }
+          }
+        }
+        distinct(field: id)
+      }
+    }
+  `)
+
+  const proposals = foo.data.proposals.edges.map(edge => {
+    const proposal = JSONbig.parse(edge.node.internal.content)
     const id = proposal.id[0].id.toString()
     proposal.id = id
     proposal.slug = `/proposals/${id}`
