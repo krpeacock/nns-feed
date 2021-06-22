@@ -48,12 +48,12 @@ const fetchData = async () => {
     return proposal;
   }).sort((a, b) => a.proposalNumber - b.proposalNumber)
 }
-/* fetchData().then(data => {
+//  fetchData().then(data => {
 //   console.log(data[0])
 //   JSONbig.stringify(data[5]) //?
 //   Object.keys(data[1])
 // })
-*/
+
 
 module.exports = {
   fetchData,

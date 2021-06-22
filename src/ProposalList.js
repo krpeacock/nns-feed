@@ -23,7 +23,8 @@ const IndexPage = ({ pageContext }) => {
           <Link className="blogUrl" to={slug}>
             <h3>Proposal #{id}</h3>
           </Link>
-          {proposal[0].summary}
+          <div>Date submitted: {new Date(proposal_timestamp_seconds*1000).toLocaleString()}</div>
+          <p>{proposal[0].summary}</p>
           <p>
             <a href={proposal[0].url}>{proposal[0].url}</a>
           </p>

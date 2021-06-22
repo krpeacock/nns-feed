@@ -8,7 +8,7 @@ const JSONbig = require("json-bigint")
 module.exports = {
   siteMetadata: {
     title: `NNS Proposal Feed`,
-    siteUrl: `https://60cb9ef6014df611fc7fba14--serene-minsky-dca73c.netlify.app`,
+    siteUrl: `https://nns-proposal-feed.netlify.app`,
   },
   plugins: [
     require.resolve(`./plugins/source-plugin`),
@@ -27,7 +27,6 @@ module.exports = {
               proposalNumber
             }
           }
-          distinct(field: proposalNumber)
         }
         site {
           siteMetadata {
@@ -43,13 +42,13 @@ module.exports = {
             serialize: ({ query: { site, proposals } }) => {
               return proposals.edges.map(edge => {
                 const proposal = JSONbig.parse(edge.node.internal.content)
-                const id = proposal.proposalNumber
-                proposal.id = id
+                const id = edge.node.proposalNumber
                 proposal.slug = `/proposals/${id}`
 
                 return {
-                  description: proposal.proposal.summary,
-                  date: proposal.proposal_timestamp_seconds,
+                  title: proposal.proposal[0].summary,
+                  description: proposal.proposal[0].url,
+                  date: proposal.proposal_timestamp_seconds * 1000,
                   url: site.siteMetadata.siteUrl + proposal.slug,
                   guid: site.siteMetadata.siteUrl + proposal.slug,
                 }
@@ -57,7 +56,7 @@ module.exports = {
             },
             query: `
             {
-              proposals: allProposal {
+              proposals: allProposal(sort: {order: DESC, fields: proposalNumber}) {
                 edges {
                   node {
                     id
@@ -67,7 +66,6 @@ module.exports = {
                     proposalNumber
                   }
                 }
-                distinct(field: proposalNumber)
               }
             }
           `,
