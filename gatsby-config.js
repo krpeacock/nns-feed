@@ -64,9 +64,10 @@ module.exports = {
                     internal {
                       content
                     }
+                    proposalNumber
                   }
                 }
-                distinct(field: id)
+                distinct(field: proposalNumber)
               }
             }
           `,
