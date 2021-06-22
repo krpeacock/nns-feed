@@ -44,7 +44,7 @@ const fetchData = async () => {
     }
   }
   return allData.map(proposal=>{
-    proposal.proposalNumber = Number(proposal.id[0].id) ?? null;
+    proposal.proposalNumber = Number(proposal.id[0].id) || null;
     return proposal;
   }).sort((a, b) => a.proposalNumber - b.proposalNumber)
 }
