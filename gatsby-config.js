@@ -17,7 +17,7 @@ module.exports = {
       options: {
         query: `
       {
-        proposals: allProposal {
+        proposals: allProposal(sort: {order: DESC, fields: proposalNumber}) {
           edges {
             node {
               id
@@ -25,8 +25,9 @@ module.exports = {
                 content
               }
             }
+            proposalNumber
           }
-          distinct(field: id)
+          distinct(field: proposalNumber)
         }
         site {
           siteMetadata {
@@ -42,7 +43,7 @@ module.exports = {
             serialize: ({ query: { site, proposals } }) => {
               return proposals.edges.map(edge => {
                 const proposal = JSONbig.parse(edge.node.internal.content)
-                const id = proposal.id[0].id.toString()
+                const id = proposal.proposalNumber
                 proposal.id = id
                 proposal.slug = `/proposals/${id}`
 

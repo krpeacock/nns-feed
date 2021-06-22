@@ -27,7 +27,12 @@ const fetchData = async () => {
         before_proposal: lastId,
       })
       if (newData && newData.proposal_info.length) {
-        allData = [...allData, ...newData.proposal_info]
+        const result = newData.proposal_info.map(proposal=>{
+          proposal
+          proposal.proposalNumber = proposal.id?.[0]?.id;
+          return proposal;
+        })
+        allData = [...allData, ...result]
       } else {
         break
       }
@@ -38,13 +43,17 @@ const fetchData = async () => {
       break
     }
   }
-  return allData.sort((a, b) => Number(a.id[0].id) - Number(b.id[0].id))
+  return allData.map(proposal=>{
+    proposal.proposalNumber = Number(proposal.id?.[0]?.id) ?? null;
+    return proposal;
+  }).sort((a, b) => a.proposalNumber - b.proposalNumber)
 }
-// fetchData().then(data => {
-//   console.log(data[40].id[0].id.toString())
+/* fetchData().then(data => {
+//   console.log(data[0])
 //   JSONbig.stringify(data[5]) //?
 //   Object.keys(data[1])
 // })
+*/
 
 module.exports = {
   fetchData,
